@@ -1,0 +1,25 @@
+
+
+# =============== НАСТРОЙКИ DNSMASQ НА КОНТЕЙНЕРЕ С ДНС: ===================
+
+# overriding /etc/hosts and /etc/resolv.conf,
+#+ so that dnsmasq doesn't rely on them at all
+no-hosts
+addn-hosts=/etc/dnsmasq.hosts
+resolv-file=/etc/dnsmasq.resolv
+
+# addresses to forward DNS-queries to (Google)
+# (Doesn't work unless docker has Internet access)
+server=8.8.8.8
+server=8.8.4.4
+
+# logging every query coming to dnsmasq (if needed)
+#log-queries
+#log-facility=/var/log/dnsmasq/dnsmasq.log
+
+# 'listening' settings (to be acknowledged)
+# setting the address and the device on which DNS-queries are listened to
+listen-address=::1,127.0.0.1,10.2.0.4
+interface=eth0
+
+# ===========================================================================
